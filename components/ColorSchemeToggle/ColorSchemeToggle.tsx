@@ -1,15 +1,16 @@
 'use client';
 
-import { Button, Group, useMantineColorScheme } from '@mantine/core';
+import { MdOutlineWbSunny } from 'react-icons/md';
+import { HiOutlineMoon } from 'react-icons/hi2';
+
+import { Button, useMantineColorScheme } from '@mantine/core';
 
 export function ColorSchemeToggle() {
-  const { setColorScheme } = useMantineColorScheme();
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
-    <Group justify="center" mt="xl">
-      <Button onClick={() => setColorScheme('light')}>Light</Button>
-      <Button onClick={() => setColorScheme('dark')}>Dark</Button>
-      <Button onClick={() => setColorScheme('auto')}>Auto</Button>
-    </Group>
+      <Button color="stoney-blue" onClick={() => toggleColorScheme()}>
+        {colorScheme === 'light' ? <HiOutlineMoon size={20} /> : <MdOutlineWbSunny size={20} />}
+      </Button>
   );
 }

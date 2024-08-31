@@ -13,5 +13,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'import/extensions': 'off',
+    'indent': ['error', 'tab'],
+    'no-tabs': 0,
   },
 };
