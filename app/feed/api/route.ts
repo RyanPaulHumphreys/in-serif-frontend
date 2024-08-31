@@ -7,16 +7,20 @@ export async function GET(request : NextRequest) {
 	console.log(request.body);
 	const apiEndpoint = `${process.env.API_ARTICLE_ENDPOINT}${(queryParams ? `?${queryParams.toString()}` : '')}`;
 	console.log(`Endpoint: ${apiEndpoint}`);
-	const response = await fetch(apiEndpoint, {
-		headers: {
-			'content-type': 'application/json',
-		},
-		method: 'GET',
-	});
-	console.log(`Response from API: ${response.status}`);
-	if (response.ok) {
-		const data = await response.json();
-		return Response.json({ data });
+	try {
+		const response = await fetch(apiEndpoint, {
+			headers: {
+				'content-type': 'application/json',
+			},
+			method: 'GET',
+		});
+		console.log(`Response from API: ${response.status}`);
+		if (response.ok) {
+			const data = await response.json();
+			return Response.json({ data });
+		}
+	} catch (error) {
+		console.error(`Error fetching data from API: ${error}`);
 	}
 
 	return Response.json({});
